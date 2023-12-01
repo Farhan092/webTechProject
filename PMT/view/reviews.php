@@ -9,7 +9,7 @@ require_once('../model/reviewsModel.php');
 // }
 
 $message = "";
-$username = $_SESSION['flag'];
+$username = $_SESSION['username'];
 
 if (isset($_POST['review'], $_POST['rating'], $_POST['service-type'])) {
     $rating = $_POST['rating'];
@@ -38,11 +38,13 @@ if (isset($_POST['review'], $_POST['rating'], $_POST['service-type'])) {
 
 </head>
 <body>
+
+    <fieldset id = "form1">
     <h2>Reviews and Ratings</h2>
-    <fieldset>
         <legend>Submit a Review</legend>
-        <section>
-            <form  method = "post" id="reviewForm" onsubmit="event.preventDefault(); submitReview();">
+
+            <form id ="form" action="reviews.php" method = "post"  >
+
                 Rating:
                 <select id="rating" name="rating">
                     <option value="5">5 (Excellent)</option>
@@ -62,18 +64,21 @@ if (isset($_POST['review'], $_POST['rating'], $_POST['service-type'])) {
                     <option value="car_rental">Car Rental</option>
                 </select>
 
-                <button type="submit" >Submit Review</button>
+                <input type="button" name="submit" value="Submit" onclick="submitReview()"/>
+
+                <!-- <button type="button" >Submit Review</button> -->
+                <!-- <h2 id="h2"></h2> -->
             </form>
-            
-        </section>
+        
+        <br>
+    <a href="userReviews.php">View User Reviews</a><br>
+    <a href="home.php">Back</a><br>
     </fieldset>
 
     <div id="message"><?php echo !empty($message) ? $message : ''; ?></div>
 
 
-    <br>
-    <a href="userReviews.php">View User Reviews</a><br>
-    <a href="home.php">Back</a><br>
+    
 </body>
 </html>
-<div id="reviewMessage"></div>
+<!-- <div id="reviewMessage"></div> -->
